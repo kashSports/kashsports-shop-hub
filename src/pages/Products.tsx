@@ -60,7 +60,7 @@ export default function Products() {
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = !categoryFilter || product.category === categoryFilter
+    const matchesCategory = !categoryFilter || categoryFilter === 'all' || product.category === categoryFilter
     return matchesSearch && matchesCategory
   })
 
@@ -152,8 +152,8 @@ export default function Products() {
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
-            {categories.map(category => (
+            <SelectItem value="all">All Categories</SelectItem>
+            {categories.filter(category => category).map(category => (
               <SelectItem key={category} value={category}>
                 {category}
               </SelectItem>
@@ -198,7 +198,7 @@ export default function Products() {
             <CardContent>
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-primary">
-                  ${product.price.toFixed(2)}
+                  ₹{product.price.toFixed(2)}
                 </span>
                 <Badge variant="outline">{product.category}</Badge>
               </div>
