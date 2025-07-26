@@ -97,9 +97,15 @@ export default function Products() {
   useEffect(() => {
     const category = searchParams.get('category')
     if (category) {
-      setCategoryFilter(category.replace('-', ' '))
+      // Find the actual category name from the categories list (case-insensitive, ignoring dashes)
+      const match = categories.find(
+        c => c.toLowerCase().replace(/\s+/g, '-') === category.toLowerCase()
+      )
+      setCategoryFilter(match || category)
+    } else {
+      setCategoryFilter('')
     }
-  }, [searchParams])
+  }, [searchParams, categories])
 
   if (isLoading) {
     return (

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ImageUploader from '@/components/ImageUploader'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Plus, Edit, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -239,7 +240,7 @@ export default function AdminProducts() {
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="price">Price ($)</Label>
+                  <Label htmlFor="price">Price (₹)</Label>
                   <Input
                     id="price"
                     type="number"
@@ -272,14 +273,13 @@ export default function AdminProducts() {
               </div>
               
               <div>
-                <Label htmlFor="image_url">Image URL</Label>
-                <Input
-                  id="image_url"
-                  type="url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData(prev => ({ ...prev, image_url: e.target.value }))}
-                  required
-                />
+                <Label>Product Image</Label>
+                <ImageUploader onUpload={url => setFormData(prev => ({ ...prev, image_url: url }))} />
+                {formData.image_url && (
+                  <div style={{ marginTop: 8 }}>
+                    <img src={formData.image_url} alt="Preview" style={{ width: 120 }} />
+                  </div>
+                )}
               </div>
               
               <DialogFooter>
@@ -342,7 +342,7 @@ export default function AdminProducts() {
                     <TableCell>
                       <Badge variant="outline">{product.category}</Badge>
                     </TableCell>
-                    <TableCell>${product.price.toFixed(2)}</TableCell>
+                    <TableCell>₹{product.price.toFixed(2)}</TableCell>
                     <TableCell>
                       <Badge variant={product.stock > 0 ? "default" : "secondary"}>
                         {product.stock} left
