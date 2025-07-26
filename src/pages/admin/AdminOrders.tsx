@@ -35,14 +35,26 @@ export default function AdminOrders() {
           status,
           shipping_address,
           created_at,
-          profiles (
-            email
-          )
+          user_id
         `)
         .order('created_at', { ascending: false })
 
       if (error) throw error
-      return data as AdminOrder[]
+
+      // Get profiles for all orders
+      const profileIds = data.map(order => order.user_id)
+      const { data: profiles } = await supabase
+        .from('profiles')
+        .select('user_id, email')
+        .in('user_id', profileIds)
+
+      // Merge order data with profile data
+      const ordersWithProfiles = data.map(order => ({
+        ...order,
+        profiles: profiles?.find(p => p.user_id === order.user_id) || null
+      }))
+
+      return ordersWithProfiles as AdminOrder[]
     }
   })
 

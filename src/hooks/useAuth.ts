@@ -41,14 +41,14 @@ export function useAuth() {
       const { data, error } = await supabase
         .from('profiles')
         .select('role')
-        .eq('id', userId)
+        .eq('user_id', userId)
         .single()
 
       if (error) {
         console.error('Error fetching profile:', error)
         setProfile({ role: 'user' }) // Default to user role
       } else {
-        setProfile(data)
+        setProfile({ role: data.role as 'user' | 'admin' })
       }
     } catch (error) {
       console.error('Error fetching profile:', error)
