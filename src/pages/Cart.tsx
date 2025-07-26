@@ -44,7 +44,7 @@ export default function Cart() {
                   
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg">{item.name}</h3>
-                    <p className="text-primary font-medium">${item.price.toFixed(2)}</p>
+                    <p className="text-primary font-medium">₹{item.price.toFixed(2)}</p>
                   </div>
                   
                   <div className="flex items-center space-x-2">
@@ -66,7 +66,7 @@ export default function Cart() {
                   </div>
                   
                   <div className="text-right">
-                    <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="font-semibold">₹{(item.price * item.quantity).toFixed(2)}</p>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -91,7 +91,7 @@ export default function Cart() {
             <CardContent className="space-y-4">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>${cart.total.toFixed(2)}</span>
+                <span>₹{cart.total.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
@@ -100,7 +100,7 @@ export default function Cart() {
               <Separator />
               <div className="flex justify-between text-lg font-semibold">
                 <span>Total</span>
-                <span>${cart.total.toFixed(2)}</span>
+                <span>₹{cart.total.toFixed(2)}</span>
               </div>
               
               <div className="space-y-2 pt-4">
