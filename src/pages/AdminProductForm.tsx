@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ImageUploader from "@/components/ImageUploader";
-// import { supabase } from "@/integrations/supabase/client"; // Uncomment and configure as needed
+import { supabase } from "@/integrations/supabase/client"; // Make sure this import is correct
 
 const AdminProductForm: React.FC = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -12,13 +12,21 @@ const AdminProductForm: React.FC = () => {
     e.preventDefault();
     setSaving(true);
 
-    // Example: Save product to Supabase
-    // const { data, error } = await supabase
-    //   .from("products")
-    //   .insert([{ name, price, image_url: imageUrl }]);
+    // Save product to Supabase
+    const { error } = await (supabase as any)
+      .from("products")
+      .insert([{ name, price: Number(price), image_url: imageUrl }]);
 
     setSaving(false);
-    alert("Product saved (simulate)");
+
+    if (error) {
+      alert("Error saving product: " + error.message);
+    } else {
+      alert("Product saved!");
+      setName("");
+      setPrice("");
+      setImageUrl("");
+    }
   };
 
   return (

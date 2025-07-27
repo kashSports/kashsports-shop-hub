@@ -92,6 +92,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
 
       {/* Featured Categories */}
       <section className="py-20 bg-gradient-to-b from-muted/40 to-transparent">

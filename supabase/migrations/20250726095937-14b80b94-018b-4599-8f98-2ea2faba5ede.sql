@@ -1,4 +1,3 @@
--- Fix security definer functions with proper search path
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER 
 LANGUAGE plpgsql 
