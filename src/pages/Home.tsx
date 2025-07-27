@@ -9,17 +9,17 @@ export default function Home() {
     {
       name: 'Cricket',
       image: 'https://res.cloudinary.com/dmubonvht/image/upload/v1753535465/qj3t4tzg3kjw6usb5alo.webp',
-      description: 'Original English Dukes ball professional players'
+      description: 'Premium cricket gear including bats, balls, gloves, and protective equipment for all levels.'
     },
     {
       name: 'Soccer',
       image: 'https://res.cloudinary.com/dmubonvht/image/upload/v1753535929/z8fguraktdekamo6bybr.webp',
-      description: 'FIFA-approved soccer ball for professional matches'
+      description: 'Top-quality soccer balls, shoes, jerseys, and accessories for players and fans.'
     },
     {
       name: 'Fitness',
       image: 'https://res.cloudinary.com/dmubonvht/image/upload/v1753533611/defof9dypl4us8ijkshi.jpg',
-      description: 'Customize your workouts and grow stronger'
+      description: 'Essential fitness equipment and accessories to support your training and healthy lifestyle.'
     }
   ]
 
@@ -63,8 +63,8 @@ export default function Home() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-2 border-white/80 text-white hover:bg-white/20 hover:text-white hover:border-secondary transition-all shadow-lg backdrop-blur-md px-8 py-6 text-lg font-semibold"
+                variant="secondary"
+                className="shadow-xl px-8 py-6 text-lg font-semibold border-2 border-secondary/80 hover:bg-secondary/90 hover:text-white transition-all"
               >
                 <Link to="/categories" className="flex items-center gap-2 font-semibold tracking-wide">
                   <span className="inline-block">Browse Categories</span>
